@@ -1,27 +1,54 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link rel="stylesheet" href="stylesheet.css">
+    <link href="http://fonts.googleapis.com/css?family=Oleo+Script" rel="stylesheet" type="text/css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
+    <script src="moment.js"></script>
+    <title>Twittler</title>
   </head>
   <body>
+      <header>
+        <h1>Twittler</h1>
+      </header>
+      <div id ="wrap">
+        <div class="user-tweets"></div>
+        <div class="messages"></div>
+      </div>  
     <script>
-
-      $(document).ready(function(){
-        var $body = $('body');
+      var getTweets = function(user) {
+        var $body = $('.user-tweets');
         $body.html('');
-
-        var index = streams.home.length - 1;
-        while(index >= 0){
-          var tweet = streams.home[index];
+        var index = streams.users[user].length - 1;
+        var limit = Math.max(index - 40, 0);
+        var timeStamp = moment().format('lll');
+        while (index >= limit) {
+          var tweet = streams.users[user][index];
           var $tweet = $('<div></div>');
-          $tweet.text('@' + tweet.user + ': ' + tweet.message);
+          $tweet.html('@<a id="bold">' + tweet.user + '</a>: ' + tweet.message);
           $tweet.appendTo($body);
           index -= 1;
         }
-
+      };
+      $(document).ready(function() {
+        var getMessage = function() {
+          var $body = $('.messages');
+          $body.html('');
+          var index = streams.home.length - 1;
+          var limit = Math.max(index - 80, 0);
+          var timeStamp = moment().format('lll');
+          while (index >= limit) {
+            var tweet = streams.home[index];
+            var $tweet = $('<div></div>');
+            $tweet.html('@<a href="#" onclick="getTweets(\'' + tweet.user + '\')">' + tweet.user + '</a>: ' + tweet.message + '<span id="time"> posted on ' + timeStamp + '</span>');
+            $tweet.appendTo($body);
+            index -= 1;
+          }
+        };
+        getMessage();
+        setInterval(getMessage, 5000);
       });
-
     </script>
   </body>
 </html>

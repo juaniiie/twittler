@@ -1,0 +1,43 @@
+header {
+position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  padding: 5px 0 5px;
+  overflow:auto; 
+  zoom: 1;
+  background-color: #333333;
+font: 400 40px/0.1 'Oleo Script', Helvetica, sans-serif;
+  color: #FED901;
+  text-shadow: 4px 4px 0px rgba(0,0,0,0.1);
+  text-align: center;
+}
+body {
+  font: 100% "Lucida Console", Monaco, monoscope;
+  margin-top: 65px;
+  height: 26px;
+  line-height: 30px;
+  background-color: #FFFFFF;
+  padding:60px 0 50px 0;
+}
+
+div .user-tweets {
+  font-size: 14px;
+  margin-right: 0;
+  width: 30%;
+  float:right;
+  background-color: #FED901;
+}
+div .messages {
+  font-size: 16px;
+  width: 70%;
+  float: left;
+  background: #FFFFFF;
+}
+div #bold{
+  font-weight: 900;
+  color: #00CCD6;
+}
+div #time{
+  font-size: 8px;
+}
